@@ -64,7 +64,7 @@ Button =
 Button =
     Page:CreateButton(
     "Open All Chests",
-    "Self Explanatory",
+    "Opens All Chests",
     function()
         for i, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
             if v.ClassName == "Tool" then
@@ -76,6 +76,22 @@ Button =
                 v:Activate()
             end
         end
+    end
+)
+
+Button =
+    Page:CreateButton(
+    "Anti-Afk",
+    "Prevents Getting Kicked",
+    function()
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(
+            function()
+                vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+                wait(1)
+                vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+            end
+        )
     end
 )
 
