@@ -4,14 +4,14 @@ game:GetService("Players").LocalPlayer.Idled:Connect(function()
     game:GetService("VirtualUser"):ClickButton2(Vector2.new())
 end)
 
-local gay = "https://rawscripts.net/raw/"
+local mjtbincourse = "https://raw.githubusercontent.com/mjtbincourse/RickHubv2/main/"
 
 local games = {
-    [9216815133] = "AD_1036",
+    [9216815133] = "Trollge%20Conventions",
 }
 
 for i, v in pairs(games) do
     if i == game.PlaceId or i == game.GameId then
-        loadstring(game:HttpGet(gay .. v))()
+        loadstring(game:HttpGet(mjtbincourse .. v))()
     end
 end
