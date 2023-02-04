@@ -1,0 +1,133 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/cypherdh/VanisUILIB/main/.gitignore"))()
+
+local Window = library:CreateWindow("RickHub", "V2", 10044538000)
+
+local Tab = Window:CreateTab("Main")
+
+local Page = Tab:CreateFrame("Main")
+
+Toggle =
+    Page:CreateToggle(
+    "AutoFarm Chests",
+    "AutoFarms Chests",
+    function(gay)
+        getgenv().ac = gay
+        while getgenv().ac do
+            wait()
+            for _, v in pairs(game:GetService("Workspace").chests:GetChildren()) do
+                if v:IsA "Part" then
+                    game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = v.CFrame
+                end
+                fireproximityprompt(v.ProximityPrompt)
+            end
+        end
+    end
+)
+
+Toggle =
+    Page:CreateToggle(
+    "Anti-Stuck",
+    "Turn on with Autofarm",
+    function(pro)
+        getgenv().as = pro
+        while getgenv().as do
+            wait(3)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-171.533, 193.89, 14.47)
+            game:GetService("Players"):Chat("/e dance2")
+        end
+    end
+)
+
+Button =
+    Page:CreateButton(
+    "Get All Items",
+    "Self Explanatory",
+    function()
+        function recurse(instance)
+            if instance:IsA("Tool") or instance:IsA("HopperBin") then
+                print(instance:GetFullName())
+                if workspace.FilteringEnabled == false then
+                    c = instance:Clone()
+                    c.Parent = game.Players.LocalPlayer.Backpack
+                else
+                    instance.Parent = game.Players.LocalPlayer.Backpack
+                end
+            end
+            for _, child in ipairs(instance:GetChildren()) do
+                recurse(child)
+            end
+        end
+        recurse(game)
+    end
+)
+
+Button =
+    Page:CreateButton(
+    "Open All Chests",
+    "Self Explanatory",
+    function()
+        for i, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+            if v.ClassName == "Tool" then
+                v.Parent = game:GetService("Players").LocalPlayer.Character
+            end
+        end
+        for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+            if v.ClassName == "Tool" then
+                v:Activate()
+            end
+        end
+    end
+)
+
+Page:CreateSlider(
+    "WalkSpeed",
+    1,
+    500,
+    function(sp)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = sp
+    end
+)
+
+Page:CreateSlider(
+    "WalkSpeed",
+    1,
+    500,
+    function(jp)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = jp
+    end
+)
+
+local Page = Tab:CreateFrame("Credits")
+
+Button =
+    Page:CreateButton(
+    "Owner",
+    "Rick Astley#3006",
+    function()
+    end
+)
+
+Button =
+    Page:CreateButton(
+    "Scripter",
+    "mjtbincourse#0001",
+    function()
+    end
+)
+
+local prt = Instance.new("Part")
+prt.Parent = game.Workspace
+prt.Name = "Part"
+prt.Size = Vector3.new(10, 1, 10)
+prt.CFrame = CFrame.new(-171.672, 190.39, 14.283)
+prt.Anchored = true
+prt.BackSurface = ("SmoothNoOutlines")
+prt.BottomSurface = ("SmoothNoOutlines")
+prt.FrontSurface = ("SmoothNoOutlines")
+prt.LeftSurface = ("SmoothNoOutlines")
+prt.RightSurface = ("SmoothNoOutlines")
+prt.TopSurface = ("SmoothNoOutlines")
+prt.Material = ("SmoothPlastic")
+while wait() do
+    prt.BrickColor = BrickColor.random()
+end
