@@ -1,0 +1,162 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/cypherdh/VanisUILIB/main/.gitignore"))()
+
+local Window = library:CreateWindow("RickHub", "V2", 10044538000)
+
+local Tab = Window:CreateTab("Main")
+
+local Page = Tab:CreateFrame("Main")
+
+Button =
+    Page:CreateButton(
+    "Kill Aura",
+    "Best With Autofarm",
+    function()
+        getgenv().Range = 100
+        local players = game:GetService("Players")
+        local player = players.LocalPlayer
+        local camera = workspace.CurrentCamera
+
+        local function getPartsInViewport(maxDistance)
+            local partsInViewport = {}
+            for _, part in ipairs(workspace:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    local distance = player:DistanceFromCharacter(part.Position)
+                    if distance <= maxDistance then
+                        local _, isVisible = camera:WorldToViewportPoint(part.Position)
+                        if isVisible then
+                            table.insert(partsInViewport, part)
+                        end
+                    end
+                end
+            end
+            return partsInViewport
+        end
+
+        while true do
+            wait()
+            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+            local parts = getPartsInViewport(Range)
+
+            if tool and tool:FindFirstChild("Handle") then
+                for _, part in ipairs(parts) do
+                    if
+                        part and part.Parent and part.Parent ~= game.Players.localPlayer.Character and
+                            part.Parent:FindFirstChildWhichIsA("Humanoid") and
+                            part.Parent:FindFirstChildWhichIsA("Humanoid").Health > 0
+                     then
+                        tool:Activate()
+                        firetouchinterest(tool.Handle, part, 0)
+                        firetouchinterest(tool.Handle, part, 1)
+                    end
+                end
+            end
+        end
+    end
+)
+
+Button =
+    Page:CreateToggle(
+    "AutoFarm",
+    "Turn On With Auto Bring Mob",
+    function(animan)
+        getgenv().sheesh = animan
+        while getgenv().sheesh do
+            wait(.1)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(13, 28, 159)
+        end
+    end
+)
+
+Toggle =
+    Page:CreateToggle(
+    "Auto Bring Mob",
+    "Turn On With Autofarm",
+    function(bigblackcock)
+        getgenv().yes = bigblackcock
+        while getgenv().yes do
+            task.wait(3)
+            pcall(
+                function()
+                    for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "NPC" then --change this to whatever mob you want to farm
+                            v.HumanoidRootPart.CanCollide = false
+                            v.HumanoidRootPart.CFrame =
+                                CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+                        end
+                    end
+                end
+            )
+        end
+    end
+)
+Button =
+    Page:CreateButton(
+    "Tp to all 3 stones",
+    "Reality, Space, and Time.",
+    function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            CFrame.new(444, 114.499878, 443, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+        task.wait()
+        do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                CFrame.new(-412.000061, 71.5, -444.000061, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+            task.wait()
+            do
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                    CFrame.new(-420, 11.5, 690, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+            end
+        end
+    end
+)
+
+Button =
+    Page:CreateButton(
+    "Anti-Afk",
+    "Prevents Getting Kicked",
+    function()
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(
+            function()
+                vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+                wait(1)
+                vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+            end
+        )
+    end
+)
+
+Page:CreateSlider(
+    "WalkSpeed",
+    1,
+    500,
+    function(sp)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = sp
+    end
+)
+
+Page:CreateSlider(
+    "JumpPower",
+    1,
+    500,
+    function(jp)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = jp
+    end
+)
+
+local Page = Tab:CreateFrame("Credits")
+
+Button =
+    Page:CreateButton(
+    "Owner",
+    "Rick Astley#3006",
+    function()
+    end
+)
+
+Button =
+    Page:CreateButton(
+    "Scripter",
+    "mjtbincourse#0001",
+    function()
+    end
+)
