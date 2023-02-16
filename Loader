@@ -8,6 +8,7 @@ local mjtbincourse = "https://raw.githubusercontent.com/mjtbincourse/RickHubv2/m
 
 local games = {
     [9216815133] = "Trollge%20Conventions",
+    [3261957210] = "Thanos%20Simulator",
 }
 
 for i, v in pairs(games) do
