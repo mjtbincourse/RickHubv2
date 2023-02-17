@@ -193,10 +193,13 @@ while wait() do
     prt.BrickColor = BrickColor.random()
 end
 
-local l__LocalPlayer__1 = game:GetService("Players").LocalPlayer;
-				game.StarterGui:SetCore("ChatMakeSystemMessage", {
-					Text = "Thank You for Using Rickhub V2!  "..game.Players.LocalPlayer.DisplayName,
-					Color = Color3.fromRGB(255, 255, 0), 
-					Font = Enum.Font.SourceSansBold, 
-					TextSize = 18
-				});
+local l__LocalPlayer__1 = game:GetService("Players").LocalPlayer
+game.StarterGui:SetCore(
+    "ChatMakeSystemMessage",
+    {
+        Text = "Thank You for Using Rickhub V2!  " .. game.Players.LocalPlayer.DisplayName,
+        Color = Color3.fromRGB(255, 255, 0),
+        Font = Enum.Font.SourceSansBold,
+        TextSize = 18
+    }
+)
