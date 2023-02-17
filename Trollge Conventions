@@ -1,3 +1,14 @@
+local l__LocalPlayer__1 = game:GetService("Players").LocalPlayer
+game.StarterGui:SetCore(
+    "ChatMakeSystemMessage",
+    {
+        Text = "Thank You for Using Rickhub V2!  " .. game.Players.LocalPlayer.DisplayName,
+        Color = Color3.fromRGB(255, 255, 0),
+        Font = Enum.Font.SourceSansBold,
+        TextSize = 18
+    }
+)
+
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/cypherdh/VanisUILIB/main/.gitignore"))()
 
 local Window = library:CreateWindow("RickHub", "V2", 10044538000)
@@ -192,14 +203,3 @@ prt.Material = ("SmoothPlastic")
 while wait() do
     prt.BrickColor = BrickColor.random()
 end
-
-local l__LocalPlayer__1 = game:GetService("Players").LocalPlayer
-game.StarterGui:SetCore(
-    "ChatMakeSystemMessage",
-    {
-        Text = "Thank You for Using Rickhub V2!  " .. game.Players.LocalPlayer.DisplayName,
-        Color = Color3.fromRGB(255, 255, 0),
-        Font = Enum.Font.SourceSansBold,
-        TextSize = 18
-    }
-)
