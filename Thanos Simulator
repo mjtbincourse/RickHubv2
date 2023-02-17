@@ -6,47 +6,58 @@ local Tab = Window:CreateTab("Main")
 
 local Page = Tab:CreateFrame("Main")
 
-Button =
-    Page:CreateButton(
+Page:CreateSlider(
+    "Kill Aura Range",
+    1,
+    500,
+    function(rickhubisthebest)
+        getgenv().Range = rickhubisthebest
+    end
+)
+
+Toggle =
+    Page:CreateToggle(
     "Kill Aura",
     "Best With Autofarm",
-    function()
-        getgenv().Range = 100
-        local players = game:GetService("Players")
-        local player = players.LocalPlayer
-        local camera = workspace.CurrentCamera
+    function(niggersnigger)
+        getgenv().kamehameha = niggersnigger
+        if getgenv().kamehameha then
+            local players = game:GetService("Players")
+            local player = players.LocalPlayer
+            local camera = workspace.CurrentCamera
 
-        local function getPartsInViewport(maxDistance)
-            local partsInViewport = {}
-            for _, part in ipairs(workspace:GetDescendants()) do
-                if part:IsA("BasePart") then
-                    local distance = player:DistanceFromCharacter(part.Position)
-                    if distance <= maxDistance then
-                        local _, isVisible = camera:WorldToViewportPoint(part.Position)
-                        if isVisible then
-                            table.insert(partsInViewport, part)
+            local function getPartsInViewport(maxDistance)
+                local partsInViewport = {}
+                for _, part in ipairs(workspace:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        local distance = player:DistanceFromCharacter(part.Position)
+                        if distance <= maxDistance then
+                            local _, isVisible = camera:WorldToViewportPoint(part.Position)
+                            if isVisible then
+                                table.insert(partsInViewport, part)
+                            end
                         end
                     end
                 end
+                return partsInViewport
             end
-            return partsInViewport
-        end
 
-        while true do
-            wait()
-            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
-            local parts = getPartsInViewport(Range)
+            while true do
+                wait()
+                local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+                local parts = getPartsInViewport(Range)
 
-            if tool and tool:FindFirstChild("Handle") then
-                for _, part in ipairs(parts) do
-                    if
-                        part and part.Parent and part.Parent ~= game.Players.localPlayer.Character and
-                            part.Parent:FindFirstChildWhichIsA("Humanoid") and
-                            part.Parent:FindFirstChildWhichIsA("Humanoid").Health > 0
-                     then
-                        tool:Activate()
-                        firetouchinterest(tool.Handle, part, 0)
-                        firetouchinterest(tool.Handle, part, 1)
+                if tool and tool:FindFirstChild("Handle") then
+                    for _, part in ipairs(parts) do
+                        if
+                            part and part.Parent and part.Parent ~= game.Players.localPlayer.Character and
+                                part.Parent:FindFirstChildWhichIsA("Humanoid") and
+                                part.Parent:FindFirstChildWhichIsA("Humanoid").Health > 0
+                         then
+                            tool:Activate()
+                            firetouchinterest(tool.Handle, part, 0)
+                            firetouchinterest(tool.Handle, part, 1)
+                        end
                     end
                 end
             end
@@ -61,7 +72,7 @@ Button =
     function(animan)
         getgenv().sheesh = animan
         while getgenv().sheesh do
-            wait(.1)
+            task.wait(.1)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(13, 28, 159)
         end
     end
